@@ -1,0 +1,23 @@
+{
+  "plugins": ["@typescript-eslint"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "files": ["*.ts", "*.tsx"]
+  },
+  "rules": {
+    "@typescript-eslint/no-shadow": "error",
+    "@typescript-eslint/prefer-nullish-coalescing": "error",
+    "react/jsx-key":"off",
+    "semi": [2, "always"],
+    "@typescript-eslint/quotes":"off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/semi": "off",
+    "@typescript-eslint/no-misused-promises": "off"
+  },
+  "extends": [
+    "standard-with-typescript",
+    "plugin:react/recommended"
+  ],
+  "ignorePatterns":["node_modules"]
+}
