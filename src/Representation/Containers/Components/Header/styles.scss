@@ -1,0 +1,19 @@
+@import "../../../Styles/index.scss";
+
+.nav-item {
+  .line {
+    height: 1px;
+    width: 0px;
+    background-color: black;
+    opacity: 0;
+    transition: all 1s;
+    display: block;
+    margin-left: 0px;
+  }
+  &.active {
+    .line {
+      opacity: 1;
+      width: 100%;
+    }
+  }
+}

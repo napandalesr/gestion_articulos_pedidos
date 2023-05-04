@@ -1,3 +1,5 @@
 export const _Routes = {
-  Home: "/"
+  Home: "/",
+  Articles: "articles",
+  Orders: "orders"
 };
