@@ -7,13 +7,13 @@ import Router from "../../Routes";
 
 export const Layout: React.FC = () => {
   return <>
-  <Header/>
   <Suspense fallback={<Loading/>}>
     <BrowserRouter>
+      <Header/>
       <main><Router/></main>
+      <footer></footer>
     </BrowserRouter>
   </Suspense>
-  <footer></footer>
   </>;
 };
 
