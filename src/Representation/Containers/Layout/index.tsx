@@ -1,9 +1,9 @@
 import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import Header from "../Components/Header";
-import Loading from "../Components/Loading";
 import Router from "../../Routes";
+import Header from "../../Components/Header";
+import Loading from "../../Components/Loading";
 
 export const Layout: React.FC = () => {
   return <>
