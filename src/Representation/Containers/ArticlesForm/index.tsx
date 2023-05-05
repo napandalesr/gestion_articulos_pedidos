@@ -24,17 +24,23 @@ export const ArticlesForm: React.FC = () => {
       </div>
     </div>
     <div className="col-md-4">
-      <label htmlFor="price_tax_free" className="form-label">Precio sin impuesto</label>
-      <input type="text" className="form-control" id="price_tax_free" required/>
-      <div className="invalid-feedback">
-        El campo Precio sin impuesto es requerido!
+      <label htmlFor="price_tax_free" className="form-label" aria-describedby="price_tax_free_prefix">Precio sin impuesto</label>
+      <div className="input-group has-validation">
+        <span className="input-group-text" id="price_tax_free_prefix">$</span>
+        <input type="number" className="form-control" id="price_tax_free" required/>
+        <div className="invalid-feedback">
+          El campo Precio sin impuesto es requerido!
+        </div>
       </div>
     </div>
     <div className="col-md-4">
-      <label htmlFor="tax" className="form-label">Impuesto aplicable</label>
-      <input type="text" className="form-control" id="tax" required/>
-      <div className="invalid-feedback">
-        El campo Impuesto aplicable es requerido!
+    <label htmlFor="tax" className="form-label">Impuesto aplicable</label>
+      <div className="input-group has-validation">
+      <span className="input-group-text" id="price_tax_free_prefix">%</span>
+        <input type="number" className="form-control" id="tax" required/>
+        <div className="invalid-feedback">
+          El campo Impuesto aplicable es requerido!
+        </div>
       </div>
     </div>
     <div className="col-md-12">
@@ -45,7 +51,7 @@ export const ArticlesForm: React.FC = () => {
       </div>
     </div>
     <div className="col-12">
-      <button className="btn btn-primary" type="submit">Guardar</button>
+      <button className="btn btn-primary" type="submit">Crear Artículo</button>
     </div>
   </form>
   </>;

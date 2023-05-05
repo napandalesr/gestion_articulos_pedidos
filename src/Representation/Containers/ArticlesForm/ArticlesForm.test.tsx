@@ -10,7 +10,7 @@ const setup = (): any => {
   const fieldPriceTaxFree = screen.getByLabelText(/precio sin impuesto/i);
   const fieldTax = screen.getByLabelText(/impuesto aplicable/i);
   const fieldDescription = screen.getByLabelText("Descripción");
-  const buttonSave = screen.getByRole("button", { name: /Guardar/i });
+  const buttonSave = screen.getByRole("button", { name: /crear artículo/i });
   return {
     fieldReference,
     fieldName,
