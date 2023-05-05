@@ -1,4 +1,4 @@
-@import "../../../Styles/index.scss";
+@import "../../Styles/index.scss";
 
 .nav-item {
   .line {
@@ -8,7 +8,7 @@
     opacity: 0;
     transition: all 1s;
     display: block;
-    margin-left: 0px;
+    margin: auto;
   }
   &.active {
     .line {

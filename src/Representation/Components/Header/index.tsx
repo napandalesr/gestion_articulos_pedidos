@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles.scss";
 import { Link } from "react-router-dom";
-import { _Routes } from "../../../Utils/Constants";
+import { _Routes } from "../../Utils/Constants";
 
 export const Header: React.FC = () => {
   const [active, setActive] = React.useState("home");
