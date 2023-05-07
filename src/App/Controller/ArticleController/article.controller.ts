@@ -7,4 +7,9 @@ export class ArticleController {
     const articleAdapter = new ArticleAdapter(new ArticleRepository());
     return await articleAdapter.post(data);
   }
+
+  async getAll (): Promise<ArticleDtoResponse> {
+    const articleAdapter = new ArticleAdapter(new ArticleRepository());
+    return await articleAdapter.getAll();
+  }
 }

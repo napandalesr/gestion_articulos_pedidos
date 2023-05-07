@@ -7,14 +7,14 @@ import { BrowserRouter } from "react-router-dom";
 interface data {
   reference: string
   name: string
-  priceTaxFree: string
+  price_tax_free: string
 }
 
 const dataSource: data[] = [
   {
     reference: "123",
     name: "Articulo 1",
-    priceTaxFree: "2000"
+    price_tax_free: "2000"
   }
 ];
 

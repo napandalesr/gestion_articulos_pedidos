@@ -46,8 +46,7 @@ export const userForm = (callback: (event: any) => void): any => {
       if (i === errors.length && !visible) {
         setValidate(visible);
         callback(event);
-      }
-      if (i === errors.length) {
+      } else if (i === errors.length) {
         if (values?.reference !== "" &&
         values?.name !== "" &&
         values?.price_tax_free !== "" &&
