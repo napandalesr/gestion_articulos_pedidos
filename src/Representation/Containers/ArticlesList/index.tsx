@@ -25,7 +25,10 @@ export const ArticlesList: React.FC<props> = ({ dataSource, removeArticle }) => 
   };
   return <>
   {
-    showToast && <Toast hideToast={hideToast} execute={async () => { await removeArticle(idArticleToRemove); hideToast(); }}/>
+    showToast && <Toast hideToast={hideToast} execute={async () => {
+      await removeArticle(idArticleToRemove);
+      hideToast();
+    }}/>
   }
   <table className="table table-striped">
   <thead>
@@ -39,7 +42,7 @@ export const ArticlesList: React.FC<props> = ({ dataSource, removeArticle }) => 
   <tbody>
     {
       dataSource.map(item =>
-      <tr>
+      <tr key={item.id}>
         <td scope="row">{item.reference}</td>
         <td>{item.name}</td>
         <td>{item.price_tax_free}</td>
