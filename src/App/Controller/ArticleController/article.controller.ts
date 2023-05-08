@@ -13,8 +13,18 @@ export class ArticleController {
     return await articleAdapter.getAll();
   }
 
+  async getId (id: number): Promise<ArticleDtoResponse> {
+    const articleAdapter = new ArticleAdapter(new ArticleRepository());
+    return await articleAdapter.getId(id);
+  }
+
   async remove (id: number): Promise<ArticleDtoResponse> {
     const articleAdapter = new ArticleAdapter(new ArticleRepository());
     return await articleAdapter.remove(id);
+  }
+
+  async update (id: number, dataSource: ArticlerDto): Promise<ArticleDtoResponse> {
+    const articleAdapter = new ArticleAdapter(new ArticleRepository());
+    return await articleAdapter.update(id, dataSource);
   }
 }

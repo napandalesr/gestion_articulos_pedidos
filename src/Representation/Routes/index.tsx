@@ -10,7 +10,7 @@ const Router: React.FC = () => {
   return <>
   <Routes>
     <Route path={_Routes.Home} element={<Home/>}/>
-    <Route path={_Routes.Articles} element={<Articles/>}/>
+    <Route path={_Routes.Articles + "/:idParams?"} element={<Articles/>}/>
     <Route path={_Routes.Orders} element={<Orders/>}/>
   </Routes>
   </>;

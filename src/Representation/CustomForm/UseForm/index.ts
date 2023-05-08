@@ -62,6 +62,7 @@ export const userForm = (callback: (event: any) => void): any => {
     handleSubmit,
     handleChange,
     values,
+    setValues,
     validate
   };
 };
