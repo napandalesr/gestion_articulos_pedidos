@@ -29,7 +29,7 @@ const SaveData = async (dataSource: any): Promise<boolean> => {
 };
 
 const setup = (): any => {
-  const { rerender } = render(<ArticlesForm SaveData={SaveData} success={false} errors={false}/>);
+  const { rerender } = render(<ArticlesForm SaveData={SaveData} success={false} errors={false} textModal=""/>);
   const fieldReference = screen.getByLabelText(/referencia/i);
   const fieldName = screen.getByLabelText(/nombre/i);
   const fieldPriceTaxFree = screen.getByLabelText(/precio sin impuesto/i);
@@ -83,9 +83,9 @@ describe("Funcionalidad del formulario de artículos", () => {
     fireEvent.change(fieldDescription, { target: { value: "Descripción" } });
     fireEvent.submit(screen.getByTestId("form"));
     expect(screen.queryByText("Cargando...")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={true} errors={false}/>);
+    rerender(<ArticlesForm SaveData={SaveData} success={true} errors={false} textModal=""/>);
     expect(await screen.findByText("Artículo guardado correctamente")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={false} errors={true}/>);
+    rerender(<ArticlesForm SaveData={SaveData} success={false} errors={true} textModal=""/>);
     expect(screen.queryByText("Ha ocurrido un error, intente de nuevo")).toBeInTheDocument();
   });
 });

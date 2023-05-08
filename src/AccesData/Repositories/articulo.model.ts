@@ -4,6 +4,7 @@ export interface IArticleResponse {
 }
 
 export interface ArticleModel {
+  id: number
   reference: string
   name: string
   price_tax_free: string

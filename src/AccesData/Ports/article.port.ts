@@ -3,4 +3,5 @@ import { type ArticleModel, type IArticleResponse } from "../Repositories/articu
 export interface ArticlePorts {
   getAll: () => Promise<IArticleResponse>
   post: (articleModel: ArticleModel) => Promise<IArticleResponse>
+  remove: (id: number) => Promise<IArticleResponse>
 }

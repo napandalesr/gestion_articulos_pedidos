@@ -40,6 +40,7 @@ afterAll(() => {
 
 test("endpoint para guardar un artículo", async () => {
   const data = {
+    id: 22,
     reference: "123",
     name: "Articulo 1",
     price_tax_free: "2000",

@@ -4,6 +4,7 @@ export interface ArticleDtoResponse {
 };
 
 export interface ArticlerDto {
+  id: number
   reference: string
   name: string
   price_tax_free: string
