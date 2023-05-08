@@ -28,8 +28,23 @@ const SaveData = async (dataSource: any): Promise<boolean> => {
   }, 200));
 };
 
+const dataExample = {
+  id: "1",
+  reference: "123",
+  name: "Articulo 1",
+  price_tax_free: "2000",
+  tax: "2",
+  description: "Descripción"
+};
+
+const updateArticle = async (id: number, dataSource: any): Promise<void> => {
+  await new Promise<void>(resolve => setTimeout(() => {
+    resolve();
+  }, 200));
+};
+
 const setup = (): any => {
-  const { rerender } = render(<ArticlesForm SaveData={SaveData} success={false} errors={false} textModal=""/>);
+  const { rerender } = render(<ArticlesForm SaveData={SaveData} success={false} errors={false} textModal="" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
   const fieldReference = screen.getByLabelText(/referencia/i);
   const fieldName = screen.getByLabelText(/nombre/i);
   const fieldPriceTaxFree = screen.getByLabelText(/precio sin impuesto/i);
@@ -83,9 +98,9 @@ describe("Funcionalidad del formulario de artículos", () => {
     fireEvent.change(fieldDescription, { target: { value: "Descripción" } });
     fireEvent.submit(screen.getByTestId("form"));
     expect(screen.queryByText("Cargando...")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={true} errors={false} textModal=""/>);
+    rerender(<ArticlesForm SaveData={SaveData} success={true} errors={false} textModal="Artículo guardado correctamente" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
     expect(await screen.findByText("Artículo guardado correctamente")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={false} errors={true} textModal=""/>);
+    rerender(<ArticlesForm SaveData={SaveData} success={false} errors={true} textModal="Ha ocurrido un error, intente de nuevo" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
     expect(screen.queryByText("Ha ocurrido un error, intente de nuevo")).toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import Toast from "../../Components/Toast";
+import { _Routes } from "../../Utils/Constants";
 
 interface props {
   dataSource: data[]
@@ -47,7 +48,7 @@ export const ArticlesList: React.FC<props> = ({ dataSource, removeArticle }) => 
         <td>{item.name}</td>
         <td>{item.price_tax_free}</td>
         <td>
-          <Link to={'#'} className="btn"><FontAwesomeIcon icon={faEdit} style={{ margin: '0 2px' }}/><span>Editar</span></Link>
+          <Link to={`/${_Routes.Articles}/${item.id}`} className="btn"><FontAwesomeIcon icon={faEdit} style={{ margin: '0 2px' }}/><span>Editar</span></Link>
           <Link to={'#'} className="btn btn-danger" onClick={() => { setShowToast(true); setIdArticleToRemove(parseInt(item.id)); }}><FontAwesomeIcon icon={faTrash} style={{ margin: '0 2px' }}/><span>Eliminar</span></Link>
         </td>
       </tr>)

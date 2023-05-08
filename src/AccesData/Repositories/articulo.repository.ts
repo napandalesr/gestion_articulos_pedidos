@@ -11,7 +11,15 @@ export class ArticleRepository implements ArticlePorts {
     return await httpClient().post(`${urlBase}/articulos`, data, Config);
   }
 
+  async getId (id: number): Promise<IArticleResponse> {
+    return await httpClient().get(`${urlBase}/articulos/${id}`, Config);
+  }
+
   async remove (id: number): Promise<IArticleResponse> {
     return await httpClient().delete(`${urlBase}/articulos/${id}`, Config);
+  }
+
+  async update (id: number, dataSource: ArticleModel): Promise<IArticleResponse> {
+    return await httpClient().put(`${urlBase}/articulos/${id}`, dataSource, Config);
   }
 }
