@@ -10,4 +10,8 @@ export class ArticleAdapter {
   async post (articlerDto: ArticlerDto): Promise<ArticleDtoResponse> {
     return await this.articlePort.post(articlerDto);
   }
+
+  async remove (id: number): Promise<ArticleDtoResponse> {
+    return await this.articlePort.remove(id);
+  }
 }

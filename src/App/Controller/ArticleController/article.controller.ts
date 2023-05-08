@@ -12,4 +12,9 @@ export class ArticleController {
     const articleAdapter = new ArticleAdapter(new ArticleRepository());
     return await articleAdapter.getAll();
   }
+
+  async remove (id: number): Promise<ArticleDtoResponse> {
+    const articleAdapter = new ArticleAdapter(new ArticleRepository());
+    return await articleAdapter.remove(id);
+  }
 }

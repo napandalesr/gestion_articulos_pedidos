@@ -5,6 +5,7 @@ import ArticlesList from ".";
 import { BrowserRouter } from "react-router-dom";
 
 interface data {
+  id: string
   reference: string
   name: string
   price_tax_free: string
@@ -12,15 +13,22 @@ interface data {
 
 const dataSource: data[] = [
   {
+    id: "1",
     reference: "123",
     name: "Articulo 1",
     price_tax_free: "2000"
   }
 ];
 
+const removeArticle = async (id: number): Promise<void> => {
+  await new Promise<void>(resolve => setTimeout(() => {
+    resolve();
+  }, 200));
+};
+
 describe("Se renderiza el componente ArticlesList", () => {
   test("Renderizar tabla y agregar una fila", () => {
-    render(<BrowserRouter><ArticlesList dataSource={dataSource}/></BrowserRouter>);
+    render(<BrowserRouter><ArticlesList dataSource={dataSource} removeArticle={removeArticle}/></BrowserRouter>);
     const Table = screen.getByRole("table");
     expect(Table).toHaveAttribute(
       'class',

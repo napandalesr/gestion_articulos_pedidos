@@ -51,6 +51,7 @@ test("endpoit para obtener todos los artículos", async () => {
 
 test("endpoint para guardar un artículo", async () => {
   const data = {
+    id: 2,
     reference: "123",
     name: "Articulo 1",
     price_tax_free: "2000",

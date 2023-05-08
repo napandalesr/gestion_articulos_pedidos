@@ -8,6 +8,7 @@ export const Articles: React.FC = () => {
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [data, setData] = React.useState([]);
+  const [textModal, setTextModal] = React.useState("");
   React.useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-shadow
     void ListArticle().then((data) => {
@@ -21,6 +22,7 @@ export const Articles: React.FC = () => {
       // eslint-disable-next-line @typescript-eslint/prefer-includes
       if ([200, 201, 202, 203, 204].indexOf(response.status) > -1) {
         await ListArticle();
+        setTextModal("Artículo guardado correctamente");
         setSuccess(true);
         setTimeout(() => {
           setSuccess(false);
@@ -29,6 +31,7 @@ export const Articles: React.FC = () => {
       return true;
     } catch (err) {
       console.log(err);
+      setTextModal("Ha ocurrido un error, intente de nuevo");
       setError(true);
       setTimeout(() => {
         setError(false);
@@ -46,20 +49,30 @@ export const Articles: React.FC = () => {
       console.log(err);
     }
   };
+
+  const removeArticle = async (id: number): Promise<void> => {
+    try {
+      const articleController = new ArticleController();
+      const response: any = await articleController.remove(id);
+      // eslint-disable-next-line @typescript-eslint/prefer-includes
+      if ([200, 201, 202, 203, 204].indexOf(response.status) > -1) {
+        await ListArticle();
+        setSuccess(true);
+        setTextModal("Artículo eliminado correctamente");
+        setTimeout(() => {
+          setSuccess(false);
+        }, 5000);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return <section className="articulos p-3">
-    <div className="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-  <div className="d-flex">
-    <div className="toast-body">
-      Hello, world! This is a toast message.
-    </div>
-    <button type="button" className="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
-</div>
   <h2 className="p-3">Articulos</h2>
   <hr />
-  <ArticlesForm SaveData={SaveArticle} success={success} errors={error}/>
+  <ArticlesForm SaveData={SaveArticle} success={success} errors={error} textModal={textModal}/>
   <hr />
-  <ArticlesList dataSource={data}/>
+  <ArticlesList dataSource={data} removeArticle={removeArticle}/>
   </section>;
 };
 

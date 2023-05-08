@@ -3,14 +3,16 @@ import { userForm } from "../../CustomForm/UseForm";
 
 import "./styles.scss";
 import Button from "../../Components/Button";
+import Alert from "../../Components/Alert";
 
 interface props {
   SaveData: (dataSource: any) => Promise<boolean>
   success: boolean
   errors: boolean
+  textModal: string
 }
 
-export const ArticlesForm: React.FC<props> = ({ SaveData, success, errors }) => {
+export const ArticlesForm: React.FC<props> = ({ SaveData, success, errors, textModal }) => {
   const [loading, setLoading] = React.useState(false);
   const { handleSubmit, handleChange, values, validate } = userForm(async (event) => { await Save(event); });
 
@@ -87,16 +89,10 @@ export const ArticlesForm: React.FC<props> = ({ SaveData, success, errors }) => 
   }
   <br/>
   {
-    success &&
-    <div className="alert alert-primary" role="alert">
-      Artículo guardado correctamente
-    </div>
+    success && <Alert type="success" message={textModal}/>
   }
   {
-    errors &&
-    <div className="alert alert-danger" role="alert">
-      Ha ocurrido un error, intente de nuevo
-    </div>
+    errors && <Alert type="danger" message={textModal}/>
   }
   </>;
 };
