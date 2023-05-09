@@ -1,4 +1,4 @@
-import { type ArticleModel, type IArticleResponse } from "../Repositories/articulo.model";
+import { type ArticleModel, type IArticleResponse } from "../Repositories/ArticleRepository/articulo.model";
 
 export interface ArticlePorts {
   getAll: () => Promise<IArticleResponse>

@@ -1,4 +1,4 @@
-import { ArticleRepository } from '../../../AccesData/Repositories/articulo.repository';
+import { ArticleRepository } from '../../../AccesData/Repositories/ArticleRepository/articulo.repository';
 import { ArticleAdapter } from '../../Adapter/article.adapter';
 import { type ArticlerDto, type ArticleDtoResponse } from './article.dto';
 

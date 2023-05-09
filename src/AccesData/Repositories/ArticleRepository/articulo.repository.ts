@@ -1,5 +1,5 @@
-import { Config, httpClient, urlBase } from "../../Config/HttpClient";
-import { type ArticlePorts } from "../Ports/article.port";
+import { Config, httpClient, urlBase } from "../../../Config/HttpClient";
+import { type ArticlePorts } from "../../Ports/article.port";
 import { type ArticleModel, type IArticleResponse } from "./articulo.model";
 
 export class ArticleRepository implements ArticlePorts {

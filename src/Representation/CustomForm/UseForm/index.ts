@@ -6,17 +6,12 @@ interface IDataSource {
   price_tax_free?: string
   tax?: string
   description?: string
+  amount?: number
 }
 
 export const userForm = (callback: (event: any) => void): any => {
   const [validate, setValidate] = React.useState(false);
-  const [values, setValues] = React.useState<IDataSource>({
-    reference: "",
-    name: "",
-    price_tax_free: "",
-    tax: "",
-    description: ""
-  });
+  const [values, setValues] = React.useState<IDataSource>();
   const handleChange = (event: any): void => {
     event.preventDefault();
     const name = event.target.name;

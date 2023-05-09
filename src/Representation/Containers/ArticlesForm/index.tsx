@@ -138,21 +138,19 @@ export const ArticlesForm: React.FC<props> = ({
         El campo Descripción es requerido!
       </div>
     </div>
-    <div className="col-12">
-      {
-        idParams !== undefined
-          ? <Button
-          clase="btn btn-primary"
-          event={() => { void updateArticle(parseInt(idParams), values); }}
-          text="Actualizar Artículo"
-          type="submit"/>
-          : <Button
-          clase="btn btn-primary"
-          event={() => {}}
-          text="Crear Artículo"
-          type="submit"/>
-      }
-    </div>
+    {
+      idParams !== undefined
+        ? <Button
+        clase="btn btn-warning"
+        event={() => { void updateArticle(parseInt(idParams), values); }}
+        text="Actualizar Artículo"
+        type="submit"/>
+        : <Button
+        clase="btn btn-primary"
+        event={() => {}}
+        text="Crear Artículo"
+        type="submit"/>
+    }
   </form>
   {
     loading &&
