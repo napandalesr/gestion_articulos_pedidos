@@ -1,7 +1,7 @@
 import { type ArticlePorts } from "../../AccesData/Ports/article.port";
 import { type ArticlerDto, type ArticleDtoResponse } from "../Controller/ArticleController/article.dto";
 
-export class ArticleAdapter implements ArticlePorts {
+export class ArticleAdapter {
   constructor (private readonly articlePort: ArticlePorts) {}
   async getAll (): Promise<ArticleDtoResponse> {
     return await this.articlePort.getAll();

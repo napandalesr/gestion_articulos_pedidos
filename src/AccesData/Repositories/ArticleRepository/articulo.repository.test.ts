@@ -1,4 +1,4 @@
-import { urlBase } from './../../Config/HttpClient';
+import { urlBase } from './../../../Config/HttpClient';
 import { setupServer } from 'msw/node';
 import { rest } from "msw";
 import { ArticleRepository } from './articulo.repository';
