@@ -11,7 +11,7 @@ const Router: React.FC = () => {
   <Routes>
     <Route path={_Routes.Home} element={<Home/>}/>
     <Route path={_Routes.Articles + "/:idParams?"} element={<Articles/>}/>
-    <Route path={_Routes.Orders} element={<Orders/>}/>
+    <Route path={_Routes.Orders + "/:idParams?"} element={<Orders/>}/>
   </Routes>
   </>;
 };

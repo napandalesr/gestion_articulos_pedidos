@@ -1,13 +1,21 @@
 import React from "react";
+import { differenceBy } from "lodash";
 
 import { userForm } from "../../CustomForm/UseForm";
+import Button from "../../Components/Button";
+import Alert from "../../Components/Alert";
 
 import "./styles.scss";
-import Button from "../../Components/Button";
 
 interface props {
   SaveData: (dataSource: any) => Promise<void>
+  updateOrder: (id: number, dataSource: any) => Promise<void>
   articles: dataSource[]
+  success: boolean
+  errors: boolean
+  textModal: string
+  idParams: string | undefined
+  defaultValue: dataSourceOrder
 }
 
 interface dataSource {
@@ -18,17 +26,59 @@ interface dataSource {
   tax: string
 }
 
-export const OrderForm: React.FC<props> = ({ SaveData, articles }) => {
+interface dataSourceOrder {
+  id: string
+  articles: Article[]
+  price_total_tax_free: string
+  price_total_tax: string
+}
+
+export interface Article {
+  idArticle: number
+  amount: number
+  reference: string
+}
+
+export const OrderForm: React.FC<props> = ({
+  SaveData,
+  updateOrder,
+  articles,
+  success,
+  errors,
+  textModal,
+  idParams,
+  defaultValue
+}) => {
   const [articlesSelects, setArticlesSelects] = React.useState<any[]>([]);
-  const [totalPriceTaxFree, setTotalPriceTaxFree] = React.useState<number>(0);
-  const [totalPriceTax, setTotalPriceTax] = React.useState<number>(0);
+  const [totalPriceTaxFree, setTotalPriceTaxFree] = React.useState<number>(idParams !== undefined ? parseInt(defaultValue.price_total_tax_free) : 0);
+  const [totalPriceTax, setTotalPriceTax] = React.useState<number>(idParams !== undefined ? parseInt(defaultValue.price_total_tax) : 0);
   const [amountOrder, setAmountOrder] = React.useState<number>(0);
   const [articlesShow, setArticlesShow] = React.useState<any[]>([]);
   const { handleSubmit, handleChange, validate } = userForm(async (event) => { await Save(event); });
   const [loading, setLoading] = React.useState(false);
   React.useEffect(() => {
-    setArticlesShow(articles);
-  }, [articles]);
+    if (idParams !== undefined) {
+      let dataDefaultShowSelect: any[] = [];
+      let dataDefaultSelected: any[] = [];
+      setTotalPriceTaxFree(parseInt(defaultValue.price_total_tax_free));
+      setTotalPriceTax(parseInt(defaultValue.price_total_tax));
+      if (articles.length > 0) {
+        for (let i = 0; i < defaultValue.articles.length; i++) {
+          dataDefaultShowSelect = [
+            ...dataDefaultShowSelect,
+            ...articles.map(item => item.id === defaultValue.articles[i].idArticle &&
+            { ...item, amount: defaultValue.articles[i].amount }).filter(item => item !== false)];
+          if (i === defaultValue.articles.length - 1) {
+            dataDefaultSelected = differenceBy(articles, dataDefaultShowSelect, "id");
+            setArticlesSelects(dataDefaultShowSelect);
+            setArticlesShow(dataDefaultSelected);
+          }
+        }
+      }
+    } else {
+      setArticlesShow(articles);
+    }
+  }, [articles, idParams, defaultValue]);
   React.useEffect(() => {
     let total = 0;
     let totalPrice = 0;
@@ -55,7 +105,7 @@ export const OrderForm: React.FC<props> = ({ SaveData, articles }) => {
     const order = {
       articles: articlesSelects.map(item => {
         return {
-          idArticle: item.id,
+          idArticle: parseInt(item.id),
           amount: item.amount,
           reference: item.reference
         };
@@ -66,7 +116,29 @@ export const OrderForm: React.FC<props> = ({ SaveData, articles }) => {
     setLoading(true);
     try {
       await SaveData(order);
-      event.target.reset();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+      clearForm();
+    }
+  };
+
+  const Update = async (event: any): Promise<void> => {
+    const order = {
+      articles: articlesSelects.map(item => {
+        return {
+          idArticle: parseInt(item.id),
+          amount: item.amount,
+          reference: item.reference
+        };
+      }),
+      price_total_tax_free: totalPriceTaxFree,
+      price_total_tax: totalPriceTax
+    };
+    setLoading(true);
+    try {
+      await updateOrder(idParams !== undefined ? parseInt(idParams) : 0, order);
     } catch (error) {
       console.log(error);
     } finally {
@@ -170,17 +242,31 @@ export const OrderForm: React.FC<props> = ({ SaveData, articles }) => {
         El campo Cantidad es requerido!
       </div>
     </div>
-    <Button
-      clase="btn btn-primary"
-      event={() => {}}
-      text="Crear pedido"
-      type="submit"/>
+    {
+      idParams !== undefined
+        ? <Button
+          clase="btn btn-warning"
+          event={() => { void Update(idParams); }}
+          text="Actualizar pedido"
+          type="button"/>
+        : <Button
+          clase="btn btn-primary"
+          event={() => {}}
+          text="Crear pedido"
+          type="submit"/>
+    }
   </form>
   {
     loading &&
     <div className="form-disable">
       <p>Cargando...</p>
     </div>
+  }
+  {
+    success && <Alert type="success" message={textModal}/>
+  }
+  {
+    errors && <Alert type="danger" message={textModal}/>
   }
   </>;
 };
