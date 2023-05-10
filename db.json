@@ -1,4 +1,427 @@
 {
-  "articulos": [],
-  "pedidos": []
+  "articulos": [
+    {
+      "reference": "3",
+      "name": "Articulo 3",
+      "price_tax_free": "30000",
+      "tax": "2",
+      "description": "222222222",
+      "id": 4
+    },
+    {
+      "reference": "4",
+      "name": "Articulo 4",
+      "price_tax_free": "8000",
+      "tax": "9",
+      "description": "Descripción",
+      "id": 5
+    },
+    {
+      "reference": "123",
+      "name": "Articulo 123",
+      "price_tax_free": "2000",
+      "tax": "5",
+      "description": "dddddddd",
+      "id": 6
+    }
+  ],
+  "pedidos": [
+    {
+      "articles": [
+        {
+          "idArticle": 6,
+          "amount": 1,
+          "reference": "123"
+        },
+        {
+          "idArticle": 4,
+          "amount": 2,
+          "reference": "3"
+        }
+      ],
+      "price_total_tax_free": 32000,
+      "price_total_tax": 32700,
+      "id": 1
+    }
+  ],
+  "es": [
+    {
+      "header" : [
+        "Menú",
+        "Inicio",
+        "Artículos",
+        "Pedidos"
+      ]
+    },
+    {
+      "pages": [
+        {
+          "home": "Inicio"
+        },
+        {
+          "articles": {
+            "title": "Artículos",
+            "inputs": [
+              {
+                "label": "Referencia",
+                "type": "text"
+              },
+              {
+                "label": "Nombre",
+                "type": "text"
+              },
+              {
+                "label": "Precio sin impuesto",
+                "type": "number"
+              },
+              {
+                "label": "Impuesto aplicable",
+                "type": "number"
+              },
+              {
+                "label": "Descripción",
+                "type": "textarea"
+              }
+            ],
+            "button": [
+              {
+                "text": "Crear Artículo",
+                "type": "Submit"
+              }
+            ],
+            "table": {
+              "columns": [
+                "Referencia",
+                "Nombre",
+                "Precio sin impuesto",
+                "Acción"
+              ],
+              "button": {
+                "edit": "Editar",
+                "delete": "Eliminar"
+              }
+            }
+          }
+        },
+        {
+          "articles_id": {
+            "title": "Artículos",
+            "inputs": [
+              {
+                "label": "Referencia",
+                "type": "text"
+              },
+              {
+                "label": "Nombre",
+                "type": "text"
+              },
+              {
+                "label": "Precio sin impuesto",
+                "type": "number"
+              },
+              {
+                "label": "Impuesto aplicable",
+                "type": "number"
+              },
+              {
+                "label": "Descripción",
+                "type": "textarea"
+              }
+            ],
+            "button": [
+              {
+                "text": "Actualizar Artículo",
+                "type": "Submit"
+              }
+            ],
+            "table": {
+              "columns": [
+                "Referencia",
+                "Nombre",
+                "Precio sin impuesto",
+                "Acción"
+              ],
+              "button": {
+                "edit": "Editar",
+                "delete": "Eliminar"
+              }
+            }
+          }
+        },
+        {
+          "orders": {
+            "title": "Pedidos",
+            "inputs": [
+              {
+                "label": "Referencia",
+                "type": "text"
+              },
+              {
+                "label": "Cantidad",
+                "type": "number"
+              },
+              {
+                "label": "Precio total sin impuesto",
+                "type": "number"
+              },
+              {
+                "label": "Precio total con impuesto",
+                "type": "text"
+              }
+            ],
+            "button": [
+              {
+                "text": "Crear pedido",
+                "type": "button"
+              }
+            ],
+            "table": {
+              "columns": [
+                "ID",
+                "Precio total sin impuesto",
+                "Precio total con impuesto",
+                "Acción"
+              ],
+              "button": {
+                "edit": "Editar",
+                "delete": "Eliminar"
+              }
+            }
+          }
+        },
+        {
+          "orders_id": {
+            "title": "Pedidos",
+            "inputs": [
+              {
+                "label": "Referencia",
+                "type": "text"
+              },
+              {
+                "label": "Cantidad",
+                "type": "number"
+              },
+              {
+                "label": "Precio total sin impuesto",
+                "type": "number"
+              },
+              {
+                "label": "Precio total con impuesto",
+                "type": "text"
+              }
+            ],
+            "button": [
+              {
+                "text": "Actualizar pedido",
+                "type": "button"
+              }
+            ],
+            "table": {
+              "columns": [
+                "ID",
+                "Precio total sin impuesto",
+                "Precio total con impuesto",
+                "Acción"
+              ],
+              "button": {
+                "edit": "Editar",
+                "delete": "Eliminar"
+              }
+            }
+          }
+        }
+      ]
+    }
+
+  ],
+  "en": [
+    {
+      "header" : [
+        "Menu",
+        "Start",
+        "Articles",
+        "Orders"
+      ]
+    },
+    {
+      "pages": [
+        {
+          "home": "Start"
+        },
+        {
+          "articles": {
+            "title": "Articles",
+            "inputs": [
+              {
+                "label": "Reference",
+                "type": "text"
+              },
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Price without tax",
+                "type": "number"
+              },
+              {
+                "label": "Applicable tax",
+                "type": "number"
+              },
+              {
+                "label": "Description",
+                "type": "textarea"
+              }
+            ],
+            "button": [
+              {
+                "text": "Create Article",
+                "type": "Submit"
+              }
+            ],
+            "table": {
+              "columns": [
+                "Reference",
+                "Name",
+                "Price without tax",
+                "Action"
+              ],
+              "button": {
+                "edit": "Edit",
+                "delete": "Delete"
+              }
+            }
+          }
+        },
+        {
+          "articles_id": {
+            "title": "Articles",
+            "inputs": [
+              {
+                "label": "Reference",
+                "type": "text"
+              },
+              {
+                "label": "Name",
+                "type": "text"
+              },
+              {
+                "label": "Price without tax",
+                "type": "number"
+              },
+              {
+                "label": "Applicable tax",
+                "type": "number"
+              },
+              {
+                "label": "Description",
+                "type": "textarea"
+              }
+            ],
+            "button": [
+              {
+                "text": "Update Article",
+                "type": "Submit"
+              }
+            ],
+            "table": {
+              "columns": [
+                "Reference",
+                "Name",
+                "Price without tax",
+                "Action"
+              ],
+              "button": {
+                "edit": "Edit",
+                "delete": "Delete"
+              }
+            }
+          }
+        },
+        {
+          "orders": {
+            "title": "Orders",
+            "inputs": [
+              {
+                "label": "Reference",
+                "type": "text"
+              },
+              {
+                "label": "Amount",
+                "type": "number"
+              },
+              {
+                "label": "Total price without tax",
+                "type": "number"
+              },
+              {
+                "label": "Total price with tax",
+                "type": "text"
+              }
+            ],
+            "button": [
+              {
+                "text": "Create order",
+                "type": "button"
+              }
+            ],
+            "table": {
+              "columns": [
+                "ID",
+                "Total price without tax",
+                "Total price with tax",
+                "Action"
+              ],
+              "button": {
+                "edit": "Edit",
+                "delete": "Delete"
+              }
+            }
+          }
+        },
+        {
+          "orders_id": {
+            "title": "Orders",
+            "inputs": [
+              {
+                "label": "Reference",
+                "type": "text"
+              },
+              {
+                "label": "Amount",
+                "type": "number"
+              },
+              {
+                "label": "Total price without tax",
+                "type": "number"
+              },
+              {
+                "label": "Total price with tax",
+                "type": "text"
+              }
+            ],
+            "button": [
+              {
+                "text": "Update order",
+                "type": "button"
+              }
+            ],
+            "table": {
+              "columns": [
+                "ID",
+                "Total price without tax",
+                "Total price with tax",
+                "Action"
+              ],
+              "button": {
+                "edit": "Eit",
+                "delete": "Delete"
+              }
+            }
+          }
+        }
+      ]
+    }
+
+  ]
 }

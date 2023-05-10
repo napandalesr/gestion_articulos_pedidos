@@ -3,6 +3,8 @@ import { fireEvent, render, screen } from "@testing-library/react";
 
 import ArticlesList from ".";
 import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "../../Redux/store";
 
 interface data {
   id: string
@@ -34,7 +36,11 @@ const removeArticle = async (id: number): Promise<void> => {
 };
 
 const setup = (): any => {
-  render(<BrowserRouter><ArticlesList dataSource={dataSource} removeArticle={removeArticle}/></BrowserRouter>);
+  render(<Provider store={store}>
+    <BrowserRouter>
+    <ArticlesList dataSource={dataSource} removeArticle={removeArticle}/>
+    </BrowserRouter>
+    </Provider>);
   const Table = screen.getByRole("table");
   const ColumnReference = screen.getByRole('columnheader', { name: /referencia/i });
   const ColumnName = screen.getByRole('columnheader', { name: /nombre/i });

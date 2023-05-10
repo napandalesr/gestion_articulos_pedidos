@@ -5,6 +5,8 @@ import { rest } from "msw";
 
 import ArticlesForm from ".";
 import { urlBase } from "../../../Config/HttpClient";
+import { Provider } from "react-redux";
+import store from "../../Redux/store";
 
 const server = setupServer(
   rest.post(`${urlBase}/articulos`, async (req, res, ctx) => {
@@ -44,7 +46,16 @@ const updateArticle = async (id: number, dataSource: any): Promise<void> => {
 };
 
 const setup = (): any => {
-  const { rerender } = render(<ArticlesForm SaveData={SaveData} success={false} errors={false} textModal="" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
+  const { rerender } = render(<Provider store={store}>
+    <ArticlesForm
+    SaveData={SaveData}
+    success={false}
+    errors={false}
+    textModal=""
+    idParams={undefined}
+    updateArticle={updateArticle}
+    defaultValue={dataExample}/>
+    </Provider>);
   const fieldReference = screen.getByLabelText(/referencia/i);
   const fieldName = screen.getByLabelText(/nombre/i);
   const fieldPriceTaxFree = screen.getByLabelText(/precio sin impuesto/i);
@@ -98,9 +109,27 @@ describe("Funcionalidad del formulario de artículos", () => {
     fireEvent.change(fieldDescription, { target: { value: "Descripción" } });
     fireEvent.submit(screen.getByTestId("form"));
     expect(screen.queryByText("Cargando...")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={true} errors={false} textModal="Artículo guardado correctamente" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
+    rerender(<Provider store={store}>
+      <ArticlesForm
+      SaveData={SaveData}
+      success={true}
+      errors={false}
+      textModal="Artículo guardado correctamente"
+      idParams={undefined}
+      updateArticle={updateArticle}
+      defaultValue={dataExample}/>
+      </Provider>);
     expect(await screen.findByText("Artículo guardado correctamente")).toBeInTheDocument();
-    rerender(<ArticlesForm SaveData={SaveData} success={false} errors={true} textModal="Ha ocurrido un error, intente de nuevo" idParams={undefined} updateArticle={updateArticle} defaultValue={dataExample}/>);
+    rerender(<Provider store={store}>
+      <ArticlesForm
+      SaveData={SaveData}
+      success={false}
+      errors={true}
+      textModal="Ha ocurrido un error, intente de nuevo"
+      idParams={undefined}
+      updateArticle={updateArticle}
+      defaultValue={dataExample}/>
+      </Provider>);
     expect(screen.queryByText("Ha ocurrido un error, intente de nuevo")).toBeInTheDocument();
   });
 });
