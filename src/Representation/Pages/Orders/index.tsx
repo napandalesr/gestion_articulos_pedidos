@@ -5,6 +5,7 @@ import { ArticleController } from "../../../App/Controller/ArticleController/art
 import OrderList from "../../Containers/OrderList";
 import { useNavigate, useParams } from "react-router-dom";
 import { _Routes } from "../../Utils/Constants";
+import { useSelector } from "react-redux";
 
 export const Orders: React.FC = () => {
   const [articles, setArticles] = React.useState([]);
@@ -14,6 +15,7 @@ export const Orders: React.FC = () => {
   const [textModal, setTextModal] = React.useState("");
   const { idParams } = useParams();
   const navigate = useNavigate();
+  const { lenguage } = useSelector((state: any) => state.lenguageReducer);
   const [defaultValue, setDefaulValue] = React.useState({
     id: "",
     articles: [{
@@ -148,7 +150,7 @@ export const Orders: React.FC = () => {
     }
   };
   return <section className="pedidos p-3">
-  <h2 className="p-3">Pedidos</h2>
+  <h2 className="p-3">{lenguage !== undefined ? lenguage[1].pages[3].orders.title : "Pedidos"}</h2>
   <hr />
   {
     idParams !== undefined

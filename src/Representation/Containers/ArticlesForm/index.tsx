@@ -4,6 +4,7 @@ import { userForm } from "../../CustomForm/UseForm";
 import "./styles.scss";
 import Button from "../../Components/Button";
 import Alert from "../../Components/Alert";
+import { useSelector } from "react-redux";
 
 interface props {
   SaveData: (dataSource: any) => Promise<boolean>
@@ -35,6 +36,7 @@ export const ArticlesForm: React.FC<props> = ({
 }) => {
   const [loading, setLoading] = React.useState(false);
   const { handleSubmit, handleChange, values, setValues, validate } = userForm(async (event) => { await Save(event); });
+  const { lenguage } = useSelector((state: any) => state.lenguageReducer);
   React.useEffect(() => {
     if (idParams !== undefined) {
       setValues({ ...defaultValue });
@@ -64,7 +66,7 @@ export const ArticlesForm: React.FC<props> = ({
   return <>
   <form onSubmit={handleSubmit} className={`row g-3 needs-validation ${validate ? "was-validated" : ""}`} noValidate data-testid="form">
     <div className="col-md-10">
-      <label htmlFor="referencia" className="form-label">Referencia</label>
+      <label htmlFor="referencia" className="form-label">{lenguage !== undefined ? lenguage[1].pages[1].articles.inputs[0].label : "Referencia"}</label>
       <input
         type="text"
         name="reference"
@@ -78,7 +80,7 @@ export const ArticlesForm: React.FC<props> = ({
       </div>
     </div>
     <div className="col-md-4">
-      <label htmlFor="nombre" className="form-label">Nombre</label>
+      <label htmlFor="nombre" className="form-label">{lenguage !== undefined ? lenguage[1].pages[1].articles.inputs[1].label : "Nombre"}</label>
       <input
         type="text"
         name="name"
@@ -92,7 +94,8 @@ export const ArticlesForm: React.FC<props> = ({
       </div>
     </div>
     <div className="col-md-4">
-      <label htmlFor="price_tax_free" className="form-label" aria-describedby="price_tax_free_prefix">Precio sin impuesto</label>
+      <label htmlFor="price_tax_free" className="form-label" aria-describedby="price_tax_free_prefix">
+        {lenguage !== undefined ? lenguage[1].pages[1].articles.inputs[2].label : "Precio sin impuesto"}</label>
       <div className="input-group has-validation">
         <span className="input-group-text" id="price_tax_free_prefix">$</span>
         <input
@@ -109,7 +112,7 @@ export const ArticlesForm: React.FC<props> = ({
       </div>
     </div>
     <div className="col-md-4">
-    <label htmlFor="tax" className="form-label">Impuesto aplicable</label>
+    <label htmlFor="tax" className="form-label">{lenguage !== undefined ? lenguage[1].pages[1].articles.inputs[3].label : "Impuesto aplicable"}</label>
       <div className="input-group has-validation">
       <span className="input-group-text" id="price_tax_free_prefix">%</span>
         <input
@@ -126,7 +129,7 @@ export const ArticlesForm: React.FC<props> = ({
       </div>
     </div>
     <div className="col-md-12">
-      <label htmlFor="description" className="form-label">Descripción</label>
+      <label htmlFor="description" className="form-label">{lenguage !== undefined ? lenguage[1].pages[1].articles.inputs[4].label : "Descripción"}</label>
       <textarea
       className="form-control"
       name="description"
@@ -148,7 +151,7 @@ export const ArticlesForm: React.FC<props> = ({
         : <Button
         clase="btn btn-primary"
         event={() => {}}
-        text="Crear Artículo"
+        text={lenguage !== undefined ? lenguage[1].pages[1].articles.button[0].text : "Crear Artículo"}
         type="submit"/>
     }
   </form>

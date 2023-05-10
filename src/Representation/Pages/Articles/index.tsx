@@ -1,9 +1,10 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import ArticlesForm from "../../Containers/ArticlesForm";
 import ArticlesList from "../../Containers/ArticlesList";
 import { ArticleController } from "../../../App/Controller/ArticleController/article.controller";
-import { useNavigate, useParams } from "react-router-dom";
 import { _Routes } from "../../Utils/Constants";
 
 export const Articles: React.FC = () => {
@@ -12,6 +13,7 @@ export const Articles: React.FC = () => {
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
   const [data, setData] = React.useState([]);
+  const { lenguage } = useSelector((state: any) => state.lenguageReducer);
   const [defaultValue, setDefaulValue] = React.useState({
     id: "",
     reference: "",
@@ -119,7 +121,7 @@ export const Articles: React.FC = () => {
     }
   };
   return <section className="articulos p-3">
-  <h2 className="p-3">Articulos</h2>
+  <h2 className="p-3">{lenguage !== undefined ? lenguage[1].pages[1].articles.title : ""}</h2>
   <hr />
   <ArticlesForm
     SaveData={SaveArticle}
